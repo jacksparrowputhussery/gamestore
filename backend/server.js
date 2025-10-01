@@ -58,13 +58,31 @@ app.post('/api/games/:id/rate', auth, rateGame)
 
 // Developer routes
 app.post('/api/developers/upload', auth, createGame)
+// app.get('/api/developers/mygames', auth, async (req, res) => {
+//   try {
+//     console.log("My Games route - Developer:", req.developer)
+//     if (!req.developer) {
+//       return res.status(403).json({ msg: 'Access denied - developers only' })
+//     }
+//     const games = await Game.find({ developerId: req.developer._id })
+//     console.log("Found games:", games.length)
+//     res.json(games)
+//   } catch (err) {
+//     console.error("Error fetching developer games:", err)
+//     res.status(500).json({ msg: err.message })
+//   }
+// })
+
 app.get('/api/developers/mygames', auth, async (req, res) => {
   try {
-    console.log("My Games route - Developer:", req.developer)
-    if (!req.developer) {
+    console.log("My Games route - req.user:", req.user)  // ✅ Correct
+    
+    if (!req.user || req.user.role !== 'developer') {  // ✅ Correct
+      console.log("Access denied - Role:", req.user?.role)
       return res.status(403).json({ msg: 'Access denied - developers only' })
     }
-    const games = await Game.find({ developerId: req.developer._id })
+    
+    const games = await Game.find({ developerId: req.user.id })  // ✅ Correct
     console.log("Found games:", games.length)
     res.json(games)
   } catch (err) {
