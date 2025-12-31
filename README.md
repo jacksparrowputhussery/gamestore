@@ -224,20 +224,6 @@ SECURITY
 - Environment variables for secrets
 
 
-COMMON ISSUES
--------------
-Q: Can't login after registration?
-A: Check role selection matches registration
-
-Q: Games not showing?
-A: Check MongoDB connection and backend console
-
-Q: Delete not working?
-A: Check if game was purchased by any user
-
-Q: Cart/Wishlist showing for developer?
-A: Logout and login again to refresh token
-
 
 PROJECT NOTES
 -------------
@@ -259,11 +245,6 @@ FUTURE ENHANCEMENTS
 - Social features
 - Discount system
 
-
-AUTHOR
-------
-GitHub: @rain027
-Repository: https://github.com/rain027/game-full-stack
 
 
 LICENSE
